@@ -1,10 +1,22 @@
 import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Fonts, ThemeColor } from '@/constants/theme';
+import { Fonts, InterFont, ThemeColor } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export type ThemedTextProps = TextProps & {
-  type?: 'default' | 'title' | 'small' | 'smallBold' | 'subtitle' | 'link' | 'linkPrimary' | 'code';
+  type?:
+    | 'default'
+    | 'title'
+    | 'small'
+    | 'smallBold'
+    | 'subtitle'
+    | 'link'
+    | 'linkPrimary'
+    | 'code'
+    | 'moneyXl'
+    | 'display'
+    | 'heading'
+    | 'overline';
   themeColor?: ThemeColor;
 };
 
@@ -14,15 +26,8 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
   return (
     <Text
       style={[
-        { color: theme[themeColor ?? 'text'] },
-        type === 'default' && styles.default,
-        type === 'title' && styles.title,
-        type === 'small' && styles.small,
-        type === 'smallBold' && styles.smallBold,
-        type === 'subtitle' && styles.subtitle,
-        type === 'link' && styles.link,
-        type === 'linkPrimary' && styles.linkPrimary,
-        type === 'code' && styles.code,
+        { color: theme[themeColor ?? (type === 'linkPrimary' ? 'tint' : 'text')] },
+        styles[type],
         style,
       ]}
       {...rest}
@@ -30,40 +35,73 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
   );
 }
 
+// Type scale from the design handoff. Numbers use tabular figures throughout.
 const styles = StyleSheet.create({
-  small: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 500,
+  moneyXl: {
+    fontFamily: InterFont.extrabold,
+    fontSize: 46,
+    lineHeight: 46,
+    letterSpacing: -0.035 * 46,
+    fontVariant: ['tabular-nums'],
   },
-  smallBold: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 700,
-  },
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: 500,
+  display: {
+    fontFamily: InterFont.extrabold,
+    fontSize: 34,
+    lineHeight: 40,
+    letterSpacing: -0.025 * 34,
   },
   title: {
-    fontSize: 48,
-    fontWeight: 600,
-    lineHeight: 52,
+    fontFamily: InterFont.extrabold,
+    fontSize: 28,
+    lineHeight: 34,
+    letterSpacing: -0.025 * 28,
+  },
+  heading: {
+    fontFamily: InterFont.bold,
+    fontSize: 18,
+    lineHeight: 24,
+    letterSpacing: -0.01 * 18,
   },
   subtitle: {
-    fontSize: 32,
-    lineHeight: 44,
-    fontWeight: 600,
+    fontFamily: InterFont.bold,
+    fontSize: 18,
+    lineHeight: 24,
+    letterSpacing: -0.01 * 18,
+  },
+  default: {
+    fontFamily: InterFont.medium,
+    fontSize: 15,
+    lineHeight: 22,
+    fontVariant: ['tabular-nums'],
+  },
+  small: {
+    fontFamily: InterFont.regular,
+    fontSize: 13,
+    lineHeight: 18,
+    fontVariant: ['tabular-nums'],
+  },
+  smallBold: {
+    fontFamily: InterFont.bold,
+    fontSize: 13,
+    lineHeight: 18,
+    fontVariant: ['tabular-nums'],
+  },
+  overline: {
+    fontFamily: InterFont.bold,
+    fontSize: 12,
+    lineHeight: 16,
+    letterSpacing: 0.06 * 12,
+    textTransform: 'uppercase',
   },
   link: {
+    fontFamily: InterFont.semibold,
     lineHeight: 30,
     fontSize: 14,
   },
   linkPrimary: {
+    fontFamily: InterFont.semibold,
     lineHeight: 30,
     fontSize: 14,
-    color: '#3c87f7',
   },
   code: {
     fontFamily: Fonts.mono,

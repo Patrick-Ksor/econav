@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#14532D}a:hover{color:#0F3D21}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1160px; overflow: hidden; background: {{t.bg}}; font-family: Inter, system-ui, sans-serif; color: {{t.text}}">
+<div style="box-sizing: border-box; padding: 58px 20px 0; display: flex; flex-direction: column; gap: 16px">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 500; color: {{t.sub}}">Tuesday, Oct 27</span>
+<h1 style="margin: 0; font-size: 26px; line-height: 1.2; font-weight: 800; letter-spacing: -0.025em">Good morning, Maya</h1>
+</div>
+<a href="Profile.dc.html" aria-label="Profile" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 22px; background: {{t.avatarBg}}; color: {{t.avatarText}}; font-size: 15px; font-weight: 700; text-decoration: none">MC</a>
+</div>
+
+<a href="DestinationSearch.dc.html" style="display: flex; align-items: center; gap: 12px; height: 60px; box-sizing: border-box; padding: 0 8px 0 18px; border-radius: 18px; background: {{t.card}}; border: 1px solid {{t.border}}; box-shadow: {{t.shadow}}; text-decoration: none; color: {{t.sub}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{t.brand}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3"></path></svg>
+<span style="flex-grow: 1; font-size: 17px; font-weight: 500">Where are you going?</span>
+<span style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 13px; background: {{t.brandFill}}; color: {{t.onBrand}}" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"></path></svg></span>
+</a>
+
+<div style="display: flex; gap: 8px">
+<a href="Garage.dc.html" style="flex-grow: 1; display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 12px; background: {{t.card}}; border: 1px solid {{t.border}}; text-decoration: none; color: {{t.text}}; font-size: 14px; font-weight: 600">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{t.brand}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17H3v-4l2-5.2A2 2 0 0 1 6.9 6.5h10.2A2 2 0 0 1 19 7.8l2 5.2v4h-2M9 17h6M3 13h18M7 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM17 19a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+<span style="flex-grow: 1">2021 RAV4 <span style="font-weight: 500; color: {{t.sub}}">· 30 MPG</span></span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{t.sub}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+</a>
+<a href="RoutePrefs.dc.html" style="display: flex; align-items: center; gap: 6px; height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 12px; background: {{t.card}}; border: 1px solid {{t.border}}; text-decoration: none; color: {{t.text}}; font-size: 14px; font-weight: 600">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{t.brand}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1M15 4v4M9 10v4M17 16v4"></path></svg>
+Balanced</a>
+</div>
+
+<div style="position: relative; height: 150px; border-radius: 20px; overflow: hidden; border: 1px solid {{t.border}}">
+<dc-import name="Map" h="150" routes="none" tone="{{mapTone}}" hint-size="100%,150px"></dc-import>
+<span aria-hidden="true" style="position: absolute; left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 20px; background: rgba(37,99,235,0.18); display: flex; align-items: center; justify-content: center"><span style="width: 14px; height: 14px; border-radius: 7px; background: #2563EB; border: 3px solid #FFFFFF"></span></span>
+<span style="position: absolute; left: 12px; bottom: 12px; padding: 6px 10px; border-radius: 10px; background: {{t.card}}; font-size: 12px; font-weight: 600; color: {{t.text}}; box-shadow: 0 2px 8px rgba(15,23,42,0.10)">Linden St, Oak Park</span>
+</div>
+
+<a href="TripSummary.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 72px; box-sizing: border-box; padding: 12px 12px 12px 14px; border-radius: 18px; background: {{t.card}}; border: 1px solid {{t.border}}; text-decoration: none; color: {{t.text}}">
+<span style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 12px; background: {{t.warnBg}}; color: {{t.warnText}}" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2"></path></svg></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 700">Back from Harbor View?</span>
+<span style="font-size: 13px; line-height: 1.35; color: {{t.sub}}">Confirm your trip to add an estimated $4.05.</span>
+</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{t.sub}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+<a href="Savings.dc.html" style="display: flex; flex-direction: column; gap: 18px; box-sizing: border-box; padding: 20px; border-radius: 22px; background: {{t.hero}}; text-decoration: none; color: #FFFFFF; font-variant-numeric: tabular-nums">
+<span style="display: flex; align-items: center; justify-content: space-between">
+<span style="font-size: 14px; font-weight: 600; color: #BBF7D0">Total Savings</span>
+<span style="padding: 4px 8px; border-radius: 8px; background: rgba(255,255,255,0.12); font-size: 11px; font-weight: 600; color: #DCFCE7">Estimated</span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 46px; line-height: 1; font-weight: 800; letter-spacing: -0.035em">$128.45</span>
+<span style="font-size: 13px; color: #BBF7D0">vs. fastest routes · 26 trips optimized</span>
+</span>
+<span style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<span style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.08)"><span style="font-size: 12px; color: #BBF7D0">This month</span><span style="font-size: 18px; font-weight: 700">$34.20</span></span>
+<span style="display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.08)"><span style="font-size: 12px; color: #BBF7D0">Fuel avoided</span><span style="font-size: 18px; font-weight: 700">8.4 gal</span></span>
+</span>
+</a>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<a href="AddVehicle.dc.html" style="display: flex; align-items: center; gap: 10px; height: 64px; box-sizing: border-box; padding: 0 14px; border-radius: 16px; background: {{t.card}}; border: 1px solid {{t.border}}; text-decoration: none; color: {{t.text}}; font-size: 15px; font-weight: 600">
+<span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: {{t.tint}}; color: {{t.brand}}" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></span>Add vehicle</a>
+<a href="TripHistory.dc.html" style="display: flex; align-items: center; gap: 10px; height: 64px; box-sizing: border-box; padding: 0 14px; border-radius: 16px; background: {{t.card}}; border: 1px solid {{t.border}}; text-decoration: none; color: {{t.text}}; font-size: 15px; font-weight: 600">
+<span style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: {{t.tint}}; color: {{t.brand}}" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8M3 3v5h5M12 7v5l3 2"></path></svg></span>Trip history</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Recent trips</h2>
+<a href="TripHistory.dc.html" style="display: flex; align-items: center; min-height: 36px; font-size: 14px; font-weight: 600; text-decoration: none; color: {{t.brand}}">See all</a>
+</div>
+<div style="display: flex; flex-direction: column; border-radius: 18px; background: {{t.card}}; border: 1px solid {{t.border}}; overflow: hidden">
+<sc-for list="{{trips}}" as="trip" hint-placeholder-count="3">
+<a href="{{trip.href}}" style="display: flex; align-items: center; gap: 12px; min-height: 66px; box-sizing: border-box; padding: 10px 14px; border-top: {{trip.divider}}; text-decoration: none; color: {{t.text}}; font-variant-numeric: tabular-nums">
+<span style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 11px; background: {{t.chip}}; color: {{t.sub}}" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path></svg></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{trip.dest}}</span>
+<span style="font-size: 12px; color: {{t.sub}}">{{trip.meta}}</span>
+</span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+<span style="font-size: 15px; font-weight: 700; color: {{trip.color}}">{{trip.saved}}</span>
+<span style="font-size: 11px; font-weight: 600; color: {{trip.statusColor}}">{{trip.status}}</span>
+</span>
+</a>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0">
+<dc-import name="TabBar" active="home" dark="{{dark}}" hint-size="390px,84px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark === true || this.props.dark === 'true';
+    const L = { bg: '#F8FAFC', card: '#FFFFFF', border: '#E2E8F0', text: '#0F172A', sub: '#64748B', brand: '#14532D', brandFill: '#14532D', onBrand: '#FFFFFF', hero: '#14532D', tint: '#DCFCE7', chip: '#F1F5F9', avatarBg: '#DCFCE7', avatarText: '#14532D', warnBg: '#FEF3C7', warnText: '#B45309', pos: '#15803D', neg: '#B45309', shadow: '0 8px 24px rgba(15,23,42,0.07)' };
+    const D = { bg: '#0A110E', card: '#121C18', border: '#22312B', text: '#F1F5F9', sub: '#94A3B8', brand: '#4ADE80', brandFill: '#22C55E', onBrand: '#052E16', hero: '#123D24', tint: 'rgba(34,197,94,0.14)', chip: '#1A2622', avatarBg: 'rgba(34,197,94,0.16)', avatarText: '#4ADE80', warnBg: 'rgba(245,158,11,0.16)', warnText: '#FBBF24', pos: '#4ADE80', neg: '#FBBF24', shadow: '0 8px 24px rgba(0,0,0,0.35)' };
+    const t = dark ? D : L;
+    const raw = [
+      { dest: 'Harbor View Office Park', meta: 'Today · Balanced · 25.9 mi', saved: '+$4.05', status: 'Pending', kind: 'pending', href: 'TripSummary.dc.html' },
+      { dest: 'Greenway Market', meta: 'Oct 26 · Cheapest · 8.2 mi', saved: '+$1.16', status: 'Confirmed', kind: 'ok', href: 'TripDetail.dc.html' },
+      { dest: 'Lakeside Stadium', meta: 'Oct 24 · Route changed · 14.6 mi', saved: '−$0.85', status: 'Confirmed', kind: 'neg', href: 'TripDetail.dc.html' }
+    ];
+    return {
+      t,
+      dark,
+      mapTone: dark ? 'dark' : 'light',
+      trips: raw.map((r, i) => ({
+        ...r,
+        divider: i === 0 ? '0' : '1px solid ' + t.border,
+        color: r.kind === 'neg' ? t.neg : (r.kind === 'pending' ? t.sub : t.pos),
+        statusColor: r.kind === 'pending' ? t.warnText : t.sub
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

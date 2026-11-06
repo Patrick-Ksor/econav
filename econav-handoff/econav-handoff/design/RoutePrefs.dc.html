@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Route preferences</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#14532D}a:hover{color:#0F3D21}
+input[type=range]{accent-color:#14532D}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1120px; overflow: hidden; background: #F8FAFC; font-family: Inter, system-ui, sans-serif; color: #0F172A; font-variant-numeric: tabular-nums">
+<div style="box-sizing: border-box; padding: 54px 20px 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="Profile.dc.html" aria-label="Back" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: -10px; color: #0F172A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<h1 style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.015em">Route preferences</h1>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 18px; background: #14532D; color: #FFFFFF">
+<span style="font-size: 12px; font-weight: 600; color: #BBF7D0">With these settings, Harbor View Office Park gets</span>
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<span style="font-size: 20px; font-weight: 800">{{rec.label}}</span>
+<span style="font-size: 15px; font-weight: 600; color: #DCFCE7">{{rec.cost}} · {{rec.min}} min</span>
+</div>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0">
+<h2 style="margin: 0; font-size: 15px; font-weight: 700">What matters most?</h2>
+<div role="radiogroup" aria-label="Recommendation priority" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: #F1F5F9">
+<sc-for list="{{prios}}" as="p" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{p.checked}}" onClick="{{p.pick}}" style="height: 44px; border: 0; border-radius: 9px; background: {{p.bg}}; box-shadow: {{p.shadow}}; font-family: inherit; font-size: 13px; font-weight: 700; color: {{p.fg}}">{{p.label}}</button>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #64748B">{{prioHelp}}</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0; opacity: {{rateOp}}">
+<div style="display: flex; align-items: baseline; justify-content: space-between">
+<label for="rp-rate" style="font-size: 15px; font-weight: 700">Value of your time</label>
+<span style="font-size: 20px; font-weight: 800; color: #14532D">${{rate}}<span style="font-size: 13px; font-weight: 600; color: #64748B">/hr</span></span>
+</div>
+<input id="rp-rate" type="range" min="0" max="100" step="1" value="{{rate}}" onChange="{{setRate}}" style="width: 100%; height: 32px; margin: 0">
+<div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748B"><span>$0 · save every cent</span><span>$100 · time is money</span></div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #64748B">A route that takes 4 extra minutes has to save at least <strong style="color: #0F172A">{{threshold}}</strong> to be recommended. This is a ranking score, not money you spend.</p>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: flex; flex-direction: column; gap: 2px"><span id="rp-fuel-l" style="font-size: 15px; font-weight: 700">Override fuel price</span><span style="font-size: 13px; color: #64748B">{{fuelHelp}}</span></span>
+<button type="button" role="switch" aria-checked="{{fuelOn}}" aria-labelledby="rp-fuel-l" onClick="{{toggleFuel}}" style="flex-shrink: 0; position: relative; width: 52px; height: 32px; border: 0; border-radius: 16px; background: {{fuelTrack}}"><span style="position: absolute; top: 3px; left: {{fuelKnob}}px; width: 26px; height: 26px; border-radius: 13px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(15,23,42,0.25)"></span></button>
+</div>
+<sc-if value="{{fuelOverride}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 2px; height: 48px; box-sizing: border-box; padding: 0 12px; border-radius: 12px; border: 1px solid #E2E8F0"><span style="color: #64748B">$</span><label for="rp-fuel" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Fuel price per gallon</label><input id="rp-fuel" value="3.49" inputmode="decimal" style="flex-grow: 1; min-width: 0; height: 40px; border: 0; background: transparent; font-family: inherit; font-size: 16px; font-weight: 700; color: #0F172A; outline: none"><span style="font-size: 13px; color: #64748B">/gal</span></div>
+</sc-if>
+<div style="height: 1px; background: #E2E8F0"></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: flex; flex-direction: column; gap: 2px"><label for="rp-dep" style="font-size: 15px; font-weight: 700">Depreciation per mile</label><span style="font-size: 13px; color: #64748B">Value your car loses each mile</span></span>
+<div style="display: flex; align-items: center; gap: 2px; width: 104px; height: 44px; box-sizing: border-box; padding: 0 10px; border-radius: 12px; border: 1px solid #E2E8F0"><span style="color: #64748B">$</span><input id="rp-dep" value="0.18" inputmode="decimal" style="width: 100%; min-width: 0; height: 40px; border: 0; background: transparent; font-family: inherit; font-size: 16px; font-weight: 700; color: #0F172A; outline: none"></div>
+</div>
+<div style="height: 1px; background: #E2E8F0"></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: flex; flex-direction: column; gap: 2px"><span id="rp-toll-l" style="font-size: 15px; font-weight: 700">Include tolls in trip cost</span><span style="font-size: 13px; color: #64748B">{{tollHelp}}</span></span>
+<button type="button" role="switch" aria-checked="{{tollsOn}}" aria-labelledby="rp-toll-l" onClick="{{toggleTolls}}" style="flex-shrink: 0; position: relative; width: 52px; height: 32px; border: 0; border-radius: 16px; background: {{tollTrack}}"><span style="position: absolute; top: 3px; left: {{tollKnob}}px; width: 26px; height: 26px; border-radius: 13px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(15,23,42,0.25)"></span></button>
+</div>
+</section>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; box-sizing: border-box; padding: 14px 20px 34px; background: #F8FAFC; border-top: 1px solid #E2E8F0">
+<a href="RouteCompare.dc.html" style="display: flex; align-items: center; justify-content: center; height: 56px; border-radius: 16px; background: #14532D; color: #FFFFFF; font-size: 17px; font-weight: 700; text-decoration: none">Save preferences</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { prio: 'balance', rate: 18, tolls: true, fuel: false };
+  }
+  renderVals() {
+    const { prio, rate, tolls, fuel } = this.state;
+    const money = (v) => '$' + v.toFixed(2);
+    const R = [
+      { id: 'cheap', label: 'Cheapest', min: 41, cost: 7.13 },
+      { id: 'bal', label: 'Balanced', min: 33, cost: 7.50 },
+      { id: 'fast', label: 'Fastest', min: 29, cost: tolls ? 11.55 : 8.05 }
+    ];
+    let rec;
+    if (prio === 'cost') rec = R[0];
+    else if (prio === 'fast') rec = R[2];
+    else rec = R.reduce((a, b) => (b.cost + b.min / 60 * rate < a.cost + a.min / 60 * rate ? b : a));
+    const P = [
+      { id: 'cost', label: 'Lowest cost', help: 'Always recommends the route with the lowest estimated trip cost, even if it takes much longer.' },
+      { id: 'balance', label: 'Balance', help: 'Weighs money against time using your time value below. Recommended for most drivers.' },
+      { id: 'fast', label: 'Fastest', help: 'Always recommends the quickest arrival. EcoNav still shows what each route costs.' }
+    ];
+    const cur = P.find((p) => p.id === prio);
+    return {
+      rec: { label: rec.label, cost: money(rec.cost), min: rec.min },
+      prios: P.map((p) => {
+        const on = p.id === prio;
+        return { ...p, checked: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#14532D' : '#64748B',
+          shadow: on ? '0 1px 3px rgba(15,23,42,0.12)' : 'none', pick: () => this.setState({ prio: p.id }) };
+      }),
+      prioHelp: cur.help,
+      rate,
+      rateOp: prio === 'balance' ? 1 : 0.5,
+      setRate: (e) => this.setState({ rate: Number(e.target.value) }),
+      threshold: money(4 / 60 * rate),
+      fuelOn: fuel ? 'true' : 'false', fuelOverride: fuel,
+      fuelTrack: fuel ? '#14532D' : '#CBD5E1', fuelKnob: fuel ? 23 : 3,
+      fuelHelp: fuel ? 'Using your price for every trip' : 'Using local average · $3.29/gal',
+      toggleFuel: () => this.setState({ fuel: !fuel }),
+      tollsOn: tolls ? 'true' : 'false',
+      tollTrack: tolls ? '#14532D' : '#CBD5E1', tollKnob: tolls ? 23 : 3,
+      tollHelp: tolls ? 'Where toll prices are available' : 'Tolls ignored in totals',
+      toggleTolls: () => this.setState({ tolls: !tolls })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-05T15:45:00Z"},
+  "title": "EcoNav",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "01 Welcome", "is_interactive": true},
+    "Onboarding-Vehicle.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "02 Onboarding · Vehicle", "is_interactive": true},
+    "Onboarding-Compare.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "03 Onboarding · Compare", "is_interactive": true},
+    "Onboarding-Track.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "04 Onboarding · Track", "is_interactive": true},
+    "SignUp.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "05 Sign up · validation", "is_interactive": true},
+    "Login.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "06 Log in · error", "is_interactive": true},
+
+    "Home.dc.html": {"x": 0, "y": 1264, "w": 390, "h": 1160, "title": "07 Home", "is_interactive": true},
+    "DestinationSearch.dc.html": {"x": 470, "y": 1264, "w": 390, "h": 844, "title": "08 Destination search", "is_interactive": true},
+    "RouteCompare.dc.html": {"x": 940, "y": 1264, "w": 390, "h": 1840, "title": "09 Route comparison", "is_interactive": true},
+    "TripSummary.dc.html": {"x": 1410, "y": 1264, "w": 390, "h": 880, "title": "10 Trip summary", "is_interactive": true},
+
+    "Garage.dc.html": {"x": 0, "y": 3524, "w": 390, "h": 1100, "title": "11 Garage", "is_interactive": true},
+    "AddVehicle.dc.html": {"x": 470, "y": 3524, "w": 390, "h": 844, "title": "12 Add / edit vehicle", "is_interactive": true},
+    "RoutePrefs.dc.html": {"x": 940, "y": 3524, "w": 390, "h": 1120, "title": "13 Route preferences", "is_interactive": true},
+    "Profile.dc.html": {"x": 1410, "y": 3524, "w": 390, "h": 1100, "title": "14 Profile & settings", "is_interactive": true},
+
+    "Savings.dc.html": {"x": 0, "y": 5064, "w": 390, "h": 1360, "title": "15 Savings", "is_interactive": true},
+    "TripHistory.dc.html": {"x": 470, "y": 5064, "w": 390, "h": 1160, "title": "16 Trip history", "is_interactive": true},
+    "TripDetail.dc.html": {"x": 940, "y": 5064, "w": 390, "h": 1000, "title": "17 Trip detail", "is_interactive": true},
+
+    "HomeDark.dc.html": {"x": 0, "y": 6844, "w": 390, "h": 1160, "title": "18 Home · dark mode", "is_interactive": true},
+    "States.dc.html": {"x": 470, "y": 6844, "w": 1640, "h": 900, "title": "19 Loading, error, empty & success states"},
+
+    "DesignSystem.dc.html": {"x": 0, "y": 8424, "w": 1440, "h": 1640, "title": "20 Design system"},
+    "Map.dc.html": {"x": 1520, "y": 8424, "w": 390, "h": 260, "title": "Component · Map"},
+    "TabBar.dc.html": {"x": 1990, "y": 8424, "w": 390, "h": 84, "title": "Component · Tab bar"}
+  },
+  "order": [
+    "Main.dc.html", "Onboarding-Vehicle.dc.html", "Onboarding-Compare.dc.html", "Onboarding-Track.dc.html", "SignUp.dc.html", "Login.dc.html",
+    "Home.dc.html", "DestinationSearch.dc.html", "RouteCompare.dc.html", "TripSummary.dc.html",
+    "Garage.dc.html", "AddVehicle.dc.html", "RoutePrefs.dc.html", "Profile.dc.html",
+    "Savings.dc.html", "TripHistory.dc.html", "TripDetail.dc.html",
+    "HomeDark.dc.html", "States.dc.html",
+    "DesignSystem.dc.html", "Map.dc.html", "TabBar.dc.html"
+  ],
+  "notes": {
+    "row1": {"x": 0, "y": -300, "text": "Welcome, onboarding & sign-in", "kind": "title1", "maxW": 2740},
+    "row2": {"x": 0, "y": 964, "text": "Plan a trip: search, compare, confirm", "kind": "title1", "maxW": 1800},
+    "row3": {"x": 0, "y": 3224, "text": "Garage, preferences & profile", "kind": "title1", "maxW": 1800},
+    "row4": {"x": 0, "y": 4764, "text": "Savings & trip history", "kind": "title1", "maxW": 1330},
+    "row5": {"x": 0, "y": 6544, "text": "Dark mode & system states", "kind": "title1", "maxW": 2110},
+    "row6": {"x": 0, "y": 8124, "text": "Design system & shared components", "kind": "title1", "maxW": 2380}
+  },
+  "designSystems": []
+}

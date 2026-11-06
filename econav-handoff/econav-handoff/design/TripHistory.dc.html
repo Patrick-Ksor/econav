@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Trip history</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#14532D}a:hover{color:#0F3D21}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1160px; overflow: hidden; background: #F8FAFC; font-family: Inter, system-ui, sans-serif; color: #0F172A; font-variant-numeric: tabular-nums">
+<div style="box-sizing: border-box; padding: 54px 20px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 4px">
+<a href="Home.dc.html" aria-label="Back" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: -10px; color: #0F172A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+<h1 style="margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.015em">Trip history</h1>
+</div>
+<div role="tablist" aria-label="Filter trips" style="display: flex; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{f.selected}}" onClick="{{f.pick}}" style="height: 40px; padding: 0 14px; border-radius: 20px; border: {{f.border}}; background: {{f.bg}}; font-family: inherit; font-size: 13px; font-weight: 700; color: {{f.fg}}">{{f.label}}</button>
+</sc-for>
+</div>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="2">
+<section style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 4px 0 0; padding: 0 4px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #64748B">{{g.title}}</h2>
+<sc-for list="{{g.trips}}" as="t" hint-placeholder-count="3">
+<a href="{{t.href}}" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0; text-decoration: none; color: #0F172A; opacity: {{t.op}}">
+<span style="display: flex; align-items: center; gap: 8px">
+<span style="flex-grow: 1; font-size: 16px; font-weight: 700">{{t.dest}}</span>
+<span style="padding: 3px 8px; border-radius: 6px; background: {{t.badgeBg}}; font-size: 11px; font-weight: 700; color: {{t.badgeFg}}">{{t.status}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+</span>
+<span style="font-size: 13px; color: #64748B">{{t.when}} · {{t.car}}</span>
+<span style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding-top: 10px; border-top: 1px solid #E2E8F0">
+<span style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 11px; color: #64748B">{{t.route}}</span><span style="font-size: 14px; font-weight: 700">{{t.mi}} mi</span></span>
+<span style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 11px; color: #64748B">Est. cost</span><span style="font-size: 14px; font-weight: 700">{{t.cost}}</span></span>
+<span style="display: flex; flex-direction: column; align-items: flex-end; gap: 1px"><span style="font-size: 11px; color: #64748B">vs. fastest</span><span style="font-size: 14px; font-weight: 800; color: {{t.color}}">{{t.saved}}</span></span>
+</span>
+</a>
+</sc-for>
+</section>
+</sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0">
+<dc-import name="TabBar" active="home" hint-size="390px,84px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1160}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filter: 'all' };
+  }
+  renderVals() {
+    const T = [
+      { dest: 'Harbor View Office Park', when: 'Today, 10:42 AM', car: 'RAV4', route: 'Balanced', mi: '25.9', cost: '$7.50', saved: '+$4.05', status: 'Pending', g: 'recent' },
+      { dest: 'Greenway Market', when: 'Oct 26, 5:40 PM', car: 'RAV4', route: 'Cheapest', mi: '8.2', cost: '$2.38', saved: '+$1.16', status: 'Confirmed', g: 'recent' },
+      { dest: 'Lakeside Stadium', when: 'Oct 24, 6:15 PM', car: 'RAV4', route: 'Changed', mi: '14.6', cost: '$5.98', saved: '−$0.85', status: 'Confirmed', g: 'recent', neg: true },
+      { dest: 'Westfield Elementary', when: 'Oct 23, 7:50 AM', car: 'Civic', route: 'Balanced', mi: '6.4', cost: '$1.35', saved: '+$0.60', status: 'Confirmed', g: 'recent' },
+      { dest: 'Pine Ridge Trailhead', when: 'Oct 21, 9:30 AM', car: 'RAV4', route: 'Cheapest', mi: '31.2', cost: '$9.04', saved: '+$2.09', status: 'Confirmed', g: 'recent' },
+      { dest: 'Downtown Library', when: 'Oct 20, 3:05 PM', car: 'RAV4', route: 'Balanced', mi: '5.8', cost: '$1.68', saved: '+$0.40', status: 'Discarded', g: 'earlier' }
+    ];
+    const f = this.state.filter;
+    const F = [['all', 'All'], ['Confirmed', 'Confirmed'], ['Pending', 'Pending'], ['Discarded', 'Discarded']];
+    const BADGE = { Pending: ['#FEF3C7', '#92400E'], Confirmed: ['#DCFCE7', '#14532D'], Discarded: ['#F1F5F9', '#475569'] };
+    const shown = T.filter((t) => f === 'all' || t.status === f).map((t) => ({
+      ...t,
+      href: t.status === 'Pending' ? 'TripSummary.dc.html' : 'TripDetail.dc.html',
+      badgeBg: BADGE[t.status][0], badgeFg: BADGE[t.status][1],
+      color: t.status === 'Discarded' ? '#64748B' : (t.neg ? '#B45309' : (t.status === 'Pending' ? '#64748B' : '#15803D')),
+      op: t.status === 'Discarded' ? 0.75 : 1
+    }));
+    const groups = [
+      { title: 'Last 7 days', trips: shown.filter((t) => t.g === 'recent') },
+      { title: 'Earlier in October', trips: shown.filter((t) => t.g === 'earlier') }
+    ].filter((g) => g.trips.length);
+    return {
+      filters: F.map(([id, label]) => {
+        const on = id === f;
+        return { label, selected: on ? 'true' : 'false', bg: on ? '#14532D' : '#FFFFFF', fg: on ? '#FFFFFF' : '#334155',
+          border: on ? '1px solid #14532D' : '1px solid #E2E8F0', pick: () => this.setState({ filter: id }) };
+      }),
+      groups
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -17,11 +17,12 @@ npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — re
 npx expo start              # start the dev server
 npx expo lint               # lint
 npx tsc --noEmit            # typecheck
+npm test                    # unit tests (Jest + jest-expo); `npm run test:coverage` for coverage
 npx expo-doctor             # diagnose dependency and config issues
 npx expo install --fix      # fix incompatible package versions
 ```
 
-Run lint and typecheck before declaring any task done.
+Run lint, typecheck and `npm test` before declaring any task done. Unit tests live in `__tests__/` (pure logic in `src/lib` and `src/schemas`, plus a few components); add or update tests when you change that logic.
 
 ## Navigation & Routing
 

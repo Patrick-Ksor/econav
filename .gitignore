@@ -41,3 +41,9 @@ example
 # generated native folders
 /ios
 /android
+
+# test coverage output
+coverage/
+
+# design handoff archive (the unpacked econav-handoff/ folder is tracked)
+econav-handoff.zip

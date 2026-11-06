@@ -1,0 +1,5 @@
+# Local tooling/editor metadata — not part of the app, and .claude/skills contains
+# a symlink that EAS's archive step can't recreate on Windows without elevated
+# permissions (EPERM on symlink creation).
+.claude
+.agents

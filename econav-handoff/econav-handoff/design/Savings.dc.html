@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Savings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#14532D}a:hover{color:#0F3D21}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1360px; overflow: hidden; background: #F8FAFC; font-family: Inter, system-ui, sans-serif; color: #0F172A; font-variant-numeric: tabular-nums">
+<div style="box-sizing: border-box; padding: 58px 20px 0; display: flex; flex-direction: column; gap: 14px">
+<h1 style="margin: 0 0 2px; font-size: 28px; font-weight: 800; letter-spacing: -0.025em">Savings</h1>
+
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 20px; border-radius: 22px; background: #14532D; color: #FFFFFF">
+<span style="font-size: 14px; font-weight: 600; color: #BBF7D0">Lifetime estimated savings</span>
+<span style="font-size: 46px; line-height: 1.05; font-weight: 800; letter-spacing: -0.035em">$128.45</span>
+<span style="font-size: 13px; line-height: 1.45; color: #BBF7D0">Compared with the fastest route on each of your 26 confirmed trips since May 2026.</span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 500; color: #64748B">October so far</span><span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: #15803D">$34.20</span></div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><span style="font-size: 12px; font-weight: 500; color: #64748B">September</span><span style="font-size: 18px; font-weight: 700">$38.70</span><span style="font-size: 12px; font-weight: 600; color: #64748B">$4.50 to match, 4 days left</span></div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><span style="font-size: 12px; font-weight: 500; color: #64748B">Confirmed trips</span><span style="font-size: 20px; font-weight: 800">26</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><span style="font-size: 12px; font-weight: 500; color: #64748B">Fuel avoided</span><span style="font-size: 20px; font-weight: 800">8.4 gal</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><span style="font-size: 12px; font-weight: 500; color: #64748B">Extra drive time</span><span style="font-size: 20px; font-weight: 800; color: #B45309">+2h 05m</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 16px; background: #FFFFFF; border: 1px solid #E2E8F0"><span style="font-size: 12px; font-weight: 500; color: #64748B">Avg. per trip</span><span style="font-size: 20px; font-weight: 800">$4.94</span></div>
+</div>
+
+<section style="display: flex; flex-direction: column; gap: 14px; padding: 16px; border-radius: 20px; background: #FFFFFF; border: 1px solid #E2E8F0">
+<div role="tablist" aria-label="Period" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: #F1F5F9">
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="4">
+<button type="button" role="tab" aria-selected="{{tb.selected}}" onClick="{{tb.pick}}" style="height: 40px; border: 0; border-radius: 9px; background: {{tb.bg}}; box-shadow: {{tb.shadow}}; font-family: inherit; font-size: 13px; font-weight: 700; color: {{tb.fg}}">{{tb.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 500; color: #64748B">{{d.range}}</span><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em">{{d.total}}</span></div>
+<span style="font-size: 13px; font-weight: 600; color: #64748B">{{d.trips}} trips</span>
+</div>
+<div role="img" aria-label="{{chartLabel}}" style="display: flex; gap: 6px; height: 170px; padding-top: 18px; box-sizing: border-box; position: relative">
+<span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: {{zeroTop}}px; height: 1px; background: #CBD5E1"></span>
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+<div style="position: relative; flex: 1 1 0; display: flex; flex-direction: column; align-items: center">
+<span style="position: absolute; left: 50%; transform: translateX(-50%); top: {{b.labelTop}}px; font-size: 10px; font-weight: 700; white-space: nowrap; color: {{b.labelColor}}">{{b.text}}</span>
+<span style="position: absolute; left: 18%; right: 18%; top: {{b.top}}px; height: {{b.h}}px; border-radius: {{b.radius}}; background: {{b.color}}"></span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 6px; margin-top: -6px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+<span style="flex: 1 1 0; text-align: center; font-size: 11px; font-weight: 500; color: #64748B">{{b.label}}</span>
+</sc-for>
+</div>
+<div style="display: flex; gap: 16px; font-size: 12px; color: #64748B">
+<span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #16A34A"></span>Saved vs. fastest</span>
+<span style="display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 3px; background: #D97706"></span>Cost more (below line)</span>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 10px; padding-top: 6px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">Recent activity</h2>
+<a href="TripHistory.dc.html" style="display: flex; align-items: center; min-height: 36px; font-size: 14px; font-weight: 600; text-decoration: none">All trips</a>
+</div>
+<div style="display: flex; flex-direction: column; border-radius: 18px; background: #FFFFFF; border: 1px solid #E2E8F0; overflow: hidden">
+<sc-for list="{{activity}}" as="a" hint-placeholder-count="4">
+<a href="TripDetail.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 62px; box-sizing: border-box; padding: 10px 14px; border-top: {{a.divider}}; text-decoration: none; color: #0F172A">
+<span aria-hidden="true" style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 17px; background: {{a.iconBg}}; color: {{a.iconFg}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="{{a.d}}"></path></svg></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">{{a.dest}}</span><span style="font-size: 12px; color: #64748B">{{a.meta}}</span></span>
+<span style="font-size: 15px; font-weight: 700; color: {{a.color}}">{{a.amt}}</span>
+</a>
+</sc-for>
+</div>
+</section>
+<p style="margin: 0; font-size: 12px; line-height: 1.5; color: #64748B">Savings are estimates based on your vehicle settings and fuel prices at the time of each trip. They aren't guaranteed and won't match your bank statement exactly.</p>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0">
+<dc-import name="TabBar" active="savings" hint-size="390px,84px"></dc-import>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1360}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { period: 'year' };
+  }
+  renderVals() {
+    const S = {
+      week: { label: 'Week', range: 'Oct 21–27', trips: 4, labels: ['W', 'T', 'F', 'S', 'S', 'M', 'T'], vals: [2.09, 0, 0.60, -0.85, 0, 1.16, 0] },
+      month: { label: 'Month', range: 'October 2026', trips: 9, labels: ['1–7', '8–14', '15–21', '22–27'], vals: [10.20, 12.85, 10.24, 0.91] },
+      year: { label: 'Year', range: '2026', trips: 26, labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'], vals: [9.40, 14.85, 18.40, 12.90, 38.70, 34.20] },
+      all: { label: 'All time', range: 'Since May 2026', trips: 26, labels: ['Q2', 'Q3', 'Q4'], vals: [24.25, 70.00, 34.20] }
+    };
+    const p = this.state.period;
+    const d = S[p];
+    const fmt = (v) => (v < 0 ? '−$' : '$') + Math.abs(v).toFixed(2);
+    const total = d.vals.reduce((a, b) => a + b, 0);
+    const H = 136;
+    const posMax = Math.max(0, ...d.vals);
+    const negMax = Math.max(0, ...d.vals.map((v) => -v));
+    const span = posMax + negMax || 1;
+    const scale = H / span;
+    const zero = posMax * scale;
+    const OFF = 18;
+    return {
+      tabs: Object.keys(S).map((k) => {
+        const on = k === p;
+        return { label: S[k].label, selected: on ? 'true' : 'false', bg: on ? '#FFFFFF' : 'transparent', fg: on ? '#14532D' : '#64748B',
+          shadow: on ? '0 1px 3px rgba(15,23,42,0.12)' : 'none', pick: () => this.setState({ period: k }) };
+      }),
+      d: { range: d.range, total: fmt(total), trips: d.trips },
+      zeroTop: OFF + zero,
+      chartLabel: 'Estimated savings by period, ' + d.range + ', total ' + fmt(total),
+      bars: d.vals.map((v, i) => {
+        const h = Math.max(v === 0 ? 2 : 3, Math.abs(v) * scale);
+        const neg = v < 0;
+        const top = neg ? zero : zero - h;
+        return {
+          label: d.labels[i],
+          text: v === 0 ? '' : fmt(v),
+          top: top,
+          h: h,
+          color: v === 0 ? '#E2E8F0' : (neg ? '#D97706' : '#16A34A'),
+          radius: neg ? '0 0 5px 5px' : '5px 5px 0 0',
+          labelTop: neg ? zero + h + 3 : top - 15,
+          labelColor: neg ? '#B45309' : '#334155'
+        };
+      }),
+      activity: [
+        { dest: 'Greenway Market', meta: 'Oct 26 · Cheapest route', amt: '+$1.16', pos: true },
+        { dest: 'Lakeside Stadium', meta: 'Oct 24 · Route changed in Maps', amt: '−$0.85', pos: false },
+        { dest: 'Westfield Elementary', meta: 'Oct 23 · Balanced · Civic', amt: '+$0.60', pos: true },
+        { dest: 'Pine Ridge Trailhead', meta: 'Oct 21 · Cheapest route', amt: '+$2.09', pos: true }
+      ].map((a, i) => ({
+        ...a,
+        divider: i === 0 ? '0' : '1px solid #E2E8F0',
+        color: a.pos ? '#15803D' : '#B45309',
+        iconBg: a.pos ? '#DCFCE7' : '#FEF3C7',
+        iconFg: a.pos ? '#15803D' : '#B45309',
+        d: a.pos ? 'M12 19V5M6 11l6-6 6 6' : 'M12 5v14M6 13l6 6 6-6'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
